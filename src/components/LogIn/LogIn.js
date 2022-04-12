@@ -1,21 +1,57 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firbase.init";
 import "./LogIn.css";
 
 const LogIn = () => {
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
+
+  const handleEmailBlur = (event) => {
+    setEmail(event.target.value);
+  };
+  const handlePasswordBlur = (event) => {
+    setPass(event.target.value);
+  };
+  const handleUserLogIn = (event) => {
+    event.preventDefault();
+    signInWithEmailAndPassword(email, pass);
+  };
+
+  if (user) {
+    navigate("/shop");
+  }
   return (
     <div className="form-container">
       <div>
         <h2 className="form-title">Log In</h2>
-        <form>
+        <form onSubmit={handleUserLogIn}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" required />
+            <input
+              onBlur={handleEmailBlur}
+              type="email"
+              name="email"
+              id="email"
+              required
+            />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" required />
+            <input
+              onBlur={handlePasswordBlur}
+              type="password"
+              name="password"
+              id="password"
+              required
+            />
           </div>
+          <p className="error-message">{error ? error.message : " "}</p>
+          {loading && <p>Loading...</p>}
           <input type="submit" value="Log In" className="form-submit" />
         </form>
         <p>

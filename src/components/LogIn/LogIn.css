@@ -70,3 +70,7 @@
   margin-bottom: 30px;
   cursor: pointer;
 }
+
+.error-message {
+  color: red;
+}
