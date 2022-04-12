@@ -1,4 +1,4 @@
-import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import { faShippingFast } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -30,12 +30,12 @@ const Orders = () => {
       </div>
       <div className="cart-container">
         <Cart cart={cart}>
-          <Link to="/inventory">
+          <Link to="/shipment">
             <button className="child-btn">
-              Proceed to Checkout
+              Proceed to Shipping
               <FontAwesomeIcon
                 className="card-icon"
-                icon={faCreditCard}
+                icon={faShippingFast}
               ></FontAwesomeIcon>
             </button>
           </Link>

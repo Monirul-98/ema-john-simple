@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../images/Logo.svg";
 import auth from "../../firbase.init";
 import "./Header.css";
+import { signOut } from "firebase/auth";
 const Header = () => {
   const [user] = useAuthState(auth);
   return (
@@ -14,7 +15,11 @@ const Header = () => {
         <Link to="/orders">Orders</Link>
         <Link to="/inventory">Inventory</Link>
         <Link to="/about">About</Link>
-        {user ? <button>Sign Out</button> : <Link to="/login">Log In</Link>}
+        {user ? (
+          <button onClick={() => signOut(auth)}>Sign Out</button>
+        ) : (
+          <Link to="/login">Log In</Link>
+        )}
       </div>
     </nav>
   );
