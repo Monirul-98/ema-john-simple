@@ -3,3 +3,15 @@
   position: sticky;
   top: 0;
 }
+.child-btn {
+  font-size: 17px;
+  width: 100%;
+  background: rgba(255, 153, 0, 1);
+  color: azure;
+  border-radius: 4px;
+  border: 0;
+  padding: 16px 20px;
+}
+.card-icon {
+  margin-left: 5px;
+}
