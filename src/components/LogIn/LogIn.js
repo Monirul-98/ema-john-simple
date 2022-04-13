@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firbase.init";
 import "./LogIn.css";
@@ -9,6 +12,7 @@ const LogIn = () => {
   const [pass, setPass] = useState("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -67,7 +71,10 @@ const LogIn = () => {
           <div>or</div>
           <div className="form-line"></div>
         </div>
-        <button className="btn-google"> Continue with Google</button>
+        <button className="btn-google" onClick={() => signInWithGoogle()}>
+          {" "}
+          Continue with Google
+        </button>
       </div>
     </div>
   );

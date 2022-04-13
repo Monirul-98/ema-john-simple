@@ -7,7 +7,6 @@ const Shipment = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [error, setError] = useState("");
 
   //const navigate = useNavigate();
 
